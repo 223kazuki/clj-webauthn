@@ -2,15 +2,37 @@
  {:duct.core/project-ns clj-webauthn
 
   :duct.router/ataraxy
-  {:routes {[:get "/example"] [:clj-webauthn.handler/example]}}
+  {:routes {"/v1"
+            {[:get "/version"] [:clj-webauthn.handler.webauthn/version]
+             [:post "/register"] [:clj-webauthn.handler.webauthn/register]
+             [:post "/register/finish"] [:clj-webauthn.handler.webauthn.register/finish]
+             ;;[:post "/register/finish-u2f"] [:clj-webauthn.handler.webauthn.register/finish-u2f]
+             [:post "/authenticate"] [:clj-webauthn.handler.webauthn/authenticate]
+             [:post "/authenticate/finish"] [:clj-webauthn.handler.webauthn.authenticate/finish]
+             ;;[:post "/action/" action "/finish"] [:clj-webauthn.handler.webauthn.action/finish]
+             ;;[:post "/action/add-credential"] [:clj-webauthn.handler.webauthn.action/add-credential]
+             ;;[:post "/action/add-credential/finish/finish"] [:clj-webauthn.handler.webauthn.action.add-credential.finish/finish]
+             ;;[:post "/action/add-credential/finish/finish-u2f"] [:clj-webauthn.handler.webauthn.action.add-credential.finish/finish-u2f]
+             ;;[:post "/action/deregister"] [:clj-webauthn.handler.webauthn.action/deregister]
+             ;;[:delete "/delete-account"] [:clj-webauthn.handler.webauthn/delete-account]
+             }}}
 
-  :clj-webauthn.handler/example
-  {}}
+  :clj-webauthn.handler.webauthn/version {}
+  :clj-webauthn.handler.webauthn/register {}
+  :clj-webauthn.handler.webauthn.register/finish {}
+  :clj-webauthn.handler.webauthn.register/finish-u2f {}
+  :clj-webauthn.handler.webauthn/authenticate {}
+  :clj-webauthn.handler.webauthn.authenticate/finish {}
+  :clj-webauthn.handler.webauthn.action/finish {}
+  :clj-webauthn.handler.webauthn.action/add-credential {}
+  :clj-webauthn.handler.webauthn.action.add-credential.finish/finish {}
+  :clj-webauthn.handler.webauthn.action.add-credential.finish/finish-u2f {}
+  :clj-webauthn.handler.webauthn.action/deregister {}
+  :clj-webauthn.handler.webauthn/delete-account {}}
 
  :duct.profile/dev   #duct/include "dev"
  :duct.profile/local #duct/include "local"
  :duct.profile/prod  {}
 
  :duct.module/logging {}
- :duct.module.web/site {}
- :duct.module/cljs {:main clj-webauthn.client}}
+ :duct.module.web/api {}}

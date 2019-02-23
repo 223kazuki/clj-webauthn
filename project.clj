@@ -7,19 +7,18 @@
                  [duct/module.logging "0.4.0"]
                  [duct/module.web "0.7.0"]
                  [duct/module.ataraxy "0.3.0"]
-                 [duct/module.cljs "0.4.0"]]
+
+                 [com.yubico/webauthn-server-core "1.0.0" :scope "compile"]
+                 [com.yubico/webauthn-server-attestation "1.0.0" :scope "compile"]]
   :plugins [[duct/lein-duct "0.11.2"]]
   :main ^:skip-aot clj-webauthn.main
   :uberjar-name  "clj-webauthn-standalone.jar"
   :resource-paths ["resources" "target/resources"]
   :prep-tasks     ["javac" "compile" ["run" ":duct/compiler"]]
-  :middleware     [lein-duct.plugin/middleware]
   :profiles
   {:dev  [:project/dev :profiles/dev]
    :repl {:prep-tasks   ^:replace ["javac" "compile"]
-          :dependencies [[cider/piggieback "0.3.10"]]
-          :repl-options {:init-ns user
-                         :nrepl-middleware [cider.piggieback/wrap-cljs-repl]}}
+          :repl-options {:init-ns user}}
    :uberjar {:aot :all}
    :profiles/dev {}
    :project/dev  {:source-paths   ["dev/src"]
